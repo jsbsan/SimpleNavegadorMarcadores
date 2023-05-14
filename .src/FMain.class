@@ -1,0 +1,219 @@
+' Gambas class file
+
+Public directorioElegido As String
+
+Public Sub Form_Open()
+
+  cargaMarcadores()
+  FileViewPDF.Dir = "/home/minino/PDF"
+  FileViewtemporal.Dir = "/home/hdd/mint/Documentos/TEMPORAL/"
+  LabelDirTemporal.Text = FileViewtemporal.Dir
+
+  LabelDirPDF.Text = FileViewPDF.Dir
+
+  MenuLISTA.Visible = False 'oculto menu
+
+  Label1.Text = User.Home & "/Documentos"
+  FileViewUNO.DIR = Label1.Text
+  Label2.Text = User.HOME & "/Documentos"
+  FileViewDOS.Dir = Label2.Text
+
+End
+
+Public Sub cargaMarcadores()
+
+  Dim lista As String[]
+  Dim elemento As String
+
+  Dim listaRutas As New String[]
+  Dim listaNombre As New String[]
+  Dim toke1 As String
+  Dim toke2 As String
+  Dim contador As Integer
+
+  If ListBoxMarcadores.List.Count = 0 Then
+    'no hay nada
+    lista = Split(File.load(User.home & "/.config/gtk-3.0/bookmarks"), "\n")
+    For Each elemento In lista
+
+      If elemento = "" Then Continue
+
+      If InStr(elemento, " ") <> 0 Then
+
+        toke1 = Mid$(elemento, 1, InStr(elemento, " ") - 1)
+        toke2 = Mid$(elemento, InStr(elemento, " ") + 1, Len(elemento))
+      Else
+        toke1 = elemento
+        toke2 = elemento
+      Endif
+
+      contador += 1
+      listaNombre.Add(Str$(contador) & ":" & toke2)
+      listaRutas.Add(toke1)
+
+    Next
+    ListBoxMarcadores.Tag = listaRutas
+  Endif
+  ListBoxMarcadores.List = listaNombre
+  ListBoxMarcadores.Refresh()
+
+End
+
+Public Sub AlPanelUno_Click()
+
+  Dim elegido As String
+  Dim valor As Integer
+  Dim directorio As String
+
+  elegido = ListBoxMarcadores.Text
+  valor = Val(Mid$(elegido, 1, InStr(elegido, ":") - 1)) - 1
+  directorio = comun.validar(ListBoxMarcadores.Tag[valor])
+
+  FileViewUNO.DIR = directorio
+  Label1.TEXT = directorio
+  Label1.Tooltip = Label1.TEXT
+
+End
+
+Public Sub AlPanelDOS_Click()
+
+  Dim elegido As String
+  Dim valor As Integer
+  Dim directorio As String
+
+  elegido = ListBoxMarcadores.Text
+  valor = Val(Mid$(elegido, 1, InStr(elegido, ":") - 1)) - 1
+  directorio = comun.validar(ListBoxMarcadores.Tag[valor])
+
+  FileViewDOS.dir = directorio
+  Label2.TEXT = directorio
+  Label2.Tooltip = Label2.TEXT
+
+End
+'---------------------------------------------------------------------------------------
+
+Public Sub ButtonAbrirTerminal_Click()
+
+  Exec ["xfce4-terminal", "--working-directory=" & FileViewUNO.dir]
+
+End
+
+Public Sub ButtonNavegador_Click()
+
+  Exec ["caja", FileViewUNO.dir & "/"]
+
+End
+
+Public Sub FileViewUNO_DblClick()
+
+  If Not IsDir(FileViewUNO.dir & "/" & FileViewUNO.Current) Then
+    Desktop.Open(FileViewUNO.dir & "/" & FileViewUNO.Current)
+  Else
+    FileViewUNO.dir = FileViewUNO.dir & "/" & FileViewUNO.Current
+    Label1.Text = FileViewUNO.dir
+  Endif
+
+End
+
+Public Sub ButtonAtras_Click()
+
+  Dim lista As String[]
+  'subo una ruta
+  lista = Split(Label1.Text, "/")
+  If lista.count > 0 Then
+
+    Try lista.Delete(lista.count - 1)
+    If Error Then
+      'no puedo borrar nada
+      Return
+    Endif
+    If lista.Join("/") = "" Then
+      FileViewUNO.current = "/"
+
+      Label1.Text = "/"
+
+      FileViewUNO.Reload()
+    Else
+      Label1.Text = lista.Join("/")
+
+      FileViewUNO.dir = lista.Join("/")
+      FileViewUNO.Reload()
+
+    Endif
+
+  Endif
+
+End
+
+Public Sub ButtonNavegador2_Click()
+
+  Exec ["caja", LabelDirPDF.text & "/"]
+
+End
+
+Public Sub ButtonAbrirTerminal2_Click()
+
+  Exec ["xfce4-terminal", "--working-directory=" & LabelDirPDF.text]
+
+End
+
+Public Sub ButtonNavegador3_Click()
+
+  Exec ["caja", LabelDirTemporal.text & "/"]
+
+End
+
+Public Sub ButtonAbrirTerminal3_Click()
+
+  Exec ["xfce4-terminal", "--working-directory=" & LabelDirTemporal.text]
+
+End
+
+Public Sub ButtonAtras2_Click()
+
+  Dim lista As String[]
+  'subo una ruta
+  lista = Split(Label2.Text, "/")
+  If lista.count > 0 Then
+
+    Try lista.Delete(lista.count - 1)
+    If Error Then
+      'no puedo borrar nada
+      Return
+    Endif
+    If lista.Join("/") = "" Then
+      FileViewDOS.current = "/"
+
+      Label2.Text = "/"
+
+      FileViewdos.Reload()
+    Else
+      Label2.Text = lista.Join("/")
+
+      FileViewdos.dir = lista.Join("/")
+      FileViewdos.Reload()
+
+    Endif
+
+  Endif
+
+End
+
+Public Sub ButtonNavegador4_Click()
+
+  Exec ["caja", FileViewDOS.dir & "/"]
+
+End
+
+Public Sub ButtonAbrirTerminal4_Click()
+
+  Exec ["xfce4-terminal", "--working-directory=" & FileViewDOS.dir]
+
+End
+
+Public Sub NuevoDocumento_Click()
+
+  ' FormNuevoDocumento.RutaDirectorio = TextBoxRuta.text
+  ' FormNuevoDocumento.Showmodal()
+
+End

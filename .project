@@ -1,0 +1,25 @@
+# Gambas Project File 3.0
+Title=SimpleNavegador
+Startup=FMain
+Icon=marcador.png
+Version=0.0.1
+Component=gb.image
+Component=gb.gui.qt
+Component=gb.form
+Component=gb.desktop
+Description="Una simplicación del SituCarpeta, simplemente dos paneles de directorios elegidos desde los marcadores y otras dos con las carpetas \"Temporal\" y \"Pdf\""
+Authors="Julio Sanchez Berro"
+TabSize=2
+Translate=1
+Language=es_ES
+Maintainer=jsbsan
+Address=jusabejusabe@gmail.com
+Url=https://jsbsan.blogspot.com/
+License=General Public License
+PackageName=simplenavegadormarcadores-0.0.1
+CreateEachDirectory=1
+Packager=1
+Systems=debian
+Menus=debian:"Applications/Accessibility"
+Categories=debian:"Accessibility"
+Groups=debian:"admin"
