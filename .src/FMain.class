@@ -13,10 +13,10 @@ Public Sub Form_Open()
 
   MenuLISTA.Visible = False 'oculto menu
 
-  Label1.Text = User.Home & "/Documentos"
-  FileViewUNO.DIR = Label1.Text
-  Label2.Text = User.HOME & "/Documentos"
-  FileViewDOS.Dir = Label2.Text
+  LabelUNO.Text = User.Home & "/Documentos"
+  FileViewUNO.DIR = LabelUNO.Text
+  LabelDOS.Text = User.HOME & "/Documentos"
+  FileViewDOS.Dir = LabelDOS.Text
 
 End
 
@@ -70,8 +70,8 @@ Public Sub AlPanelUno_Click()
   directorio = comun.validar(ListBoxMarcadores.Tag[valor])
 
   FileViewUNO.DIR = directorio
-  Label1.TEXT = directorio
-  Label1.Tooltip = Label1.TEXT
+  LabelUNO.TEXT = directorio
+  LabelUNO.Tooltip = LabelUNO.TEXT
 
 End
 
@@ -86,8 +86,8 @@ Public Sub AlPanelDOS_Click()
   directorio = comun.validar(ListBoxMarcadores.Tag[valor])
 
   FileViewDOS.dir = directorio
-  Label2.TEXT = directorio
-  Label2.Tooltip = Label2.TEXT
+  LabelDOS.TEXT = directorio
+  LabelDOS.Tooltip = LabelDOS.TEXT
 
 End
 '---------------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ Public Sub FileViewUNO_DblClick()
     Desktop.Open(FileViewUNO.dir & "/" & FileViewUNO.Current)
   Else
     FileViewUNO.dir = FileViewUNO.dir & "/" & FileViewUNO.Current
-    Label1.Text = FileViewUNO.dir
+    LabelUNO.Text = FileViewUNO.dir
   Endif
 
 End
@@ -119,7 +119,7 @@ Public Sub ButtonAtras_Click()
 
   Dim lista As String[]
   'subo una ruta
-  lista = Split(Label1.Text, "/")
+  lista = Split(LabelUNO.Text, "/")
   If lista.count > 0 Then
 
     Try lista.Delete(lista.count - 1)
@@ -130,11 +130,11 @@ Public Sub ButtonAtras_Click()
     If lista.Join("/") = "" Then
       FileViewUNO.current = "/"
 
-      Label1.Text = "/"
+      LabelUNO.Text = "/"
 
       FileViewUNO.Reload()
     Else
-      Label1.Text = lista.Join("/")
+      LabelUNO.Text = lista.Join("/")
 
       FileViewUNO.dir = lista.Join("/")
       FileViewUNO.Reload()
@@ -173,7 +173,7 @@ Public Sub ButtonAtras2_Click()
 
   Dim lista As String[]
   'subo una ruta
-  lista = Split(Label2.Text, "/")
+  lista = Split(LabelDOS.Text, "/")
   If lista.count > 0 Then
 
     Try lista.Delete(lista.count - 1)
@@ -184,11 +184,11 @@ Public Sub ButtonAtras2_Click()
     If lista.Join("/") = "" Then
       FileViewDOS.current = "/"
 
-      Label2.Text = "/"
+      LabelDOS.Text = "/"
 
       FileViewdos.Reload()
     Else
-      Label2.Text = lista.Join("/")
+      LabelDOS.Text = lista.Join("/")
 
       FileViewdos.dir = lista.Join("/")
       FileViewdos.Reload()
@@ -215,5 +215,16 @@ Public Sub NuevoDocumento_Click()
 
   ' FormNuevoDocumento.RutaDirectorio = TextBoxRuta.text
   ' FormNuevoDocumento.Showmodal()
+
+End
+
+Public Sub FileViewDOS_DblClick()
+
+  If Not IsDir(FileViewDOS.dir & "/" & FileViewdos.Current) Then
+    Desktop.Open(FileViewDOS.dir & "/" & FileViewdos.Current)
+  Else
+    FileViewDOS.dir = FileViewDOS.dir & "/" & FileViewdos.Current
+    LabelDOS.Text = FileViewDOS.dir
+  Endif
 
 End
