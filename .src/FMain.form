@@ -34,13 +34,14 @@
   }
   { ListBoxMarcadores ListBox
     MoveScaled(0,6,33,82)
+    Font = Font["-1"]
     PopupMenu = "MenuLISTA"
     ScrollBar = Scroll.Both
   }
   { VBox1 VBox
     MoveScaled(33,1,90,88)
     { HBox1 HBox
-      MoveScaled(1,1,86,5)
+      MoveScaled(1,1,89,5)
       { LabelUNO Label
         MoveScaled(0,0,67,4)
         Alignment = Align.Left
@@ -55,8 +56,12 @@
         Picture = Picture["icon:/24/directory"]
       }
       { ButtonAbrirTerminal Button
-        MoveScaled(80,0,6,4)
+        MoveScaled(80,0,5,4)
         Picture = Picture["icon:/24/terminal"]
+      }
+      { ButtonActualizar Button
+        MoveScaled(84,0,4,5)
+        Picture = Picture["icon:/24/refresh"]
       }
     }
     { FileViewUNO FileView
@@ -111,25 +116,40 @@
     Border = Border.Plain
   }
   { ButtonNavegador2 Button
-    MoveScaled(175,43,5,4)
+    MoveScaled(178,43,5,4)
     Picture = Picture["icon:/24/directory"]
   }
   { ButtonAbrirTerminal2 Button
-    MoveScaled(180,43,6,4)
+    MoveScaled(182,43,6,4)
     Picture = Picture["icon:/24/terminal"]
   }
   { ButtonNavegador3 Button
-    MoveScaled(174,2,5,4)
+    MoveScaled(177,2,5,4)
     Picture = Picture["icon:/24/directory"]
   }
   { ButtonAbrirTerminal3 Button
-    MoveScaled(179,2,6,4)
+    MoveScaled(182,2,6,4)
     Picture = Picture["icon:/24/terminal"]
   }
   { Label3 Label
-    MoveScaled(0,0,31,5)
-    Font = Font["Bold,Underline,+7"]
+    MoveScaled(0,0,20,6)
+    Font = Font["Bold,Underline,+2"]
     Alignment = Align.Center
     Text = ("MARCADORES")
+  }
+  { ButtonATRASTEMPORAL Button
+    MoveScaled(174,2,3,4)
+    Picture = Picture["icon:/24/previous"]
+  }
+  { ButtonATRASPDF Button
+    MoveScaled(175,43,4,4)
+    Picture = Picture["icon:/24/previous"]
+  }
+  { LabelVERSION Label
+    MoveScaled(19,0,9,6)
+  }
+  { ButtonConfig Button
+    MoveScaled(29,1,4,5)
+    Picture = Picture["icon:/24/info"]
   }
 }

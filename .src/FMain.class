@@ -5,11 +5,13 @@ Public directorioElegido As String
 Public Sub Form_Open()
 
   cargaMarcadores()
-  FileViewPDF.Dir = "/home/minino/PDF"
-  FileViewtemporal.Dir = "/home/hdd/mint/Documentos/TEMPORAL/"
+  FileViewPDF.Dir = Settings["4PANEL", "/home/minino/PDF"]
+  FileViewtemporal.Dir = Settings["3PANEL", "/home/hdd/mint/Documentos/TEMPORAL"]
   LabelDirTemporal.Text = FileViewtemporal.Dir
 
   LabelDirPDF.Text = FileViewPDF.Dir
+  FileViewPDF.Reload()
+  FileViewtemporal.Reload()
 
   MenuLISTA.Visible = False 'oculto menu
 
@@ -17,6 +19,7 @@ Public Sub Form_Open()
   FileViewUNO.DIR = LabelUNO.Text
   LabelDOS.Text = User.HOME & "/Documentos"
   FileViewDOS.Dir = LabelDOS.Text
+  LabelVERSION.TEXT = Application.Version
 
 End
 
@@ -106,20 +109,22 @@ End
 
 Public Sub FileViewUNO_DblClick()
 
-  If Not IsDir(FileViewUNO.dir & "/" & FileViewUNO.Current) Then
-    Desktop.Open(FileViewUNO.dir & "/" & FileViewUNO.Current)
-  Else
-    FileViewUNO.dir = FileViewUNO.dir & "/" & FileViewUNO.Current
-    LabelUNO.Text = FileViewUNO.dir
-  Endif
+  cambioView(FileViewUNO, LabelUNO)
 
 End
 
 Public Sub ButtonAtras_Click()
 
+  Atras(FileViewUNO, labelUno)
+
+End
+
+Public Sub Atras(f As Fileview, l As Label)
+
   Dim lista As String[]
+
+  lista = Split(l.Text, "/")
   'subo una ruta
-  lista = Split(LabelUNO.Text, "/")
   If lista.count > 0 Then
 
     Try lista.Delete(lista.count - 1)
@@ -128,16 +133,16 @@ Public Sub ButtonAtras_Click()
       Return
     Endif
     If lista.Join("/") = "" Then
-      FileViewUNO.current = "/"
+      F.current = "/"
 
-      LabelUNO.Text = "/"
+      L.Text = "/"
 
-      FileViewUNO.Reload()
+      F.Reload()
     Else
-      LabelUNO.Text = lista.Join("/")
+      L.Text = lista.Join("/")
 
-      FileViewUNO.dir = lista.Join("/")
-      FileViewUNO.Reload()
+      F.dir = lista.Join("/")
+      F.Reload()
 
     Endif
 
@@ -220,11 +225,69 @@ End
 
 Public Sub FileViewDOS_DblClick()
 
-  If Not IsDir(FileViewDOS.dir & "/" & FileViewdos.Current) Then
-    Desktop.Open(FileViewDOS.dir & "/" & FileViewdos.Current)
+  cambioView(FileViewDOS, LabelDOS)
+
+End
+
+Public Sub ButtonActualizar_Click()
+
+  FileViewDOS.Refresh()
+  FileViewUNO.Refresh()
+
+  FileViewPDF.Refresh()
+  FileViewtemporal.Refresh()
+
+End
+
+Public Sub FileViewtemporal_DblClick()
+
+  Dim fview As FileView
+  Dim ltmp As Label
+
+  fview = FileViewtemporal
+  ltmp = LabelDirTemporal
+
+  cambioView(fview, ltmp)
+
+End
+
+Public Sub cambioView(fview As FileView, ltmp As Label)
+
+  If Not IsDir(fview.dir & "/" & fview.Current) Then
+    Desktop.Open(fview.dir & "/" & fview.Current)
   Else
-    FileViewDOS.dir = FileViewDOS.dir & "/" & FileViewdos.Current
-    LabelDOS.Text = FileViewDOS.dir
+    fview.dir = fview.dir & "/" & fview.Current
+    ltmp.Text = fview.dir
+
   Endif
+
+End
+
+Public Sub ButtonATRASTEMPORAL_Click()
+
+  Atras(FileViewtemporal, LabelDirTemporal)
+
+End
+
+Public Sub ButtonATRASPDF_Click()
+
+  Atras(FileViewPDF, LabelDirPDF)
+
+End
+
+Public Sub ButtonConfig_Click()
+
+  'abrir configuracion
+  FormConfig.ShowMODAL()
+
+  ' RECARGA LOS PANELES 3 Y 4 POR SI HAN CAMBIADO:
+  FileViewPDF.Dir = Settings["4PANEL", "/home/minino/PDF"]
+  FileViewtemporal.Dir = Settings["3PANEL", "/home/hdd/mint/Documentos/TEMPORAL"]
+  LabelDirTemporal.Text = FileViewtemporal.Dir
+
+  LabelDirPDF.Text = FileViewPDF.Dir
+
+  FileViewPDF.Reload()
+  FileViewtemporal.Reload()
 
 End

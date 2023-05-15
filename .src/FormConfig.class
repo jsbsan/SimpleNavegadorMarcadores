@@ -1,0 +1,26 @@
+' Gambas class file
+
+Public Sub ButtonCancelar_Click()
+  'SALIR SIN GRABAR CAMBIOS
+
+  Me.Close()
+
+End
+
+Public Sub Form_Open()
+
+  Me.Center()
+
+  TextBoxTemporal.Text = Settings["3PANEL", "/home/hdd/mint/Documentos/TEMPORAL"]
+  TextBoxPDF.Text = Settings["4PANEL", "/home/minino/PDF"]
+
+End
+
+Public Sub ButtonAceptar_Click()
+
+  Settings["3PANEL"] = TextBoxTemporal.Text
+  Settings["4PANEL"] = TextBoxPDF.Text
+
+  Me.Close()
+
+End

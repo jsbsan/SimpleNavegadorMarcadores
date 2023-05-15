@@ -1,0 +1,27 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,25)
+  { LabelTemporal Label
+    MoveScaled(3,3,20,4)
+    Text = ("3º PANEL (Temporal):")
+  }
+  { TextBoxTemporal TextBox
+    MoveScaled(24,3,36,4)
+  }
+  { ButtonAceptar Button
+    MoveScaled(50,17,11,5)
+    Picture = Picture["icon:/24/apply"]
+  }
+  { ButtonCancelar Button
+    MoveScaled(31,17,13,5)
+    Picture = Picture["icon:/24/cancel"]
+  }
+  { LabelPDF Label
+    MoveScaled(3,10,17,4)
+    Text = ("4º PANEL (PDF)")
+  }
+  { TextBoxPDF TextBox
+    MoveScaled(24,10,36,4)
+  }
+}
