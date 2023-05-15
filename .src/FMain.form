@@ -1,8 +1,11 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,188,89)
+  MoveScaled(0,0,215,87)
+  Expand = True
   Icon = Picture["marcador.png"]
+  Arrangement = Arrange.Vertical
+  AutoResize = True
   { MenuLISTA Menu
     Text = ("MenuLista")
     Visible = False
@@ -32,124 +35,163 @@
       Visible = False
     }
   }
-  { ListBoxMarcadores ListBox
-    MoveScaled(0,6,33,82)
-    Font = Font["-1"]
-    PopupMenu = "MenuLISTA"
-    ScrollBar = Scroll.Both
-  }
-  { VBox1 VBox
-    MoveScaled(33,1,90,88)
-    { HBox1 HBox
-      MoveScaled(1,1,89,5)
-      { LabelUNO Label
-        MoveScaled(0,0,67,4)
-        Alignment = Align.Left
-        Border = Border.Plain
+  { Splitter1 Splitter
+    MoveScaled(0,1,211,82)
+    Expand = True
+    { VBox2 VBox
+      MoveScaled(2,6,45,63)
+      AutoResize = True
+      { Panel1 Panel
+        MoveScaled(1,1,48,11)
+        { LabelVERSION Label
+          MoveScaled(19,0,9,6)
+        }
+        { ButtonConfig Button
+          MoveScaled(29,1,4,5)
+          Picture = Picture["icon:/24/info"]
+        }
+        { Label3 Label
+          MoveScaled(0,0,20,6)
+          Font = Font["Bold,Underline,+2"]
+          Alignment = Align.Center
+          Text = ("MARCADORES")
+        }
       }
-      { ButtonAtras Button
-        MoveScaled(68,0,6,4)
-        Picture = Picture["icon:/24/previous"]
-      }
-      { ButtonNavegador Button
-        MoveScaled(75,0,5,4)
-        Picture = Picture["icon:/24/directory"]
-      }
-      { ButtonAbrirTerminal Button
-        MoveScaled(80,0,5,4)
-        Picture = Picture["icon:/24/terminal"]
-      }
-      { ButtonActualizar Button
-        MoveScaled(84,0,4,5)
-        Picture = Picture["icon:/24/refresh"]
+      { ListBoxMarcadores ListBox
+        MoveScaled(1,14,22,46)
+        Font = Font["-1"]
+        Expand = True
+        PopupMenu = "MenuLISTA"
+        ScrollBar = Scroll.Both
       }
     }
-    { FileViewUNO FileView
-      MoveScaled(0,6,96,36)
-      View = FileView.Detailed
-      ShowDirectory = True
+    { Panel2 VBox
+      MoveScaled(48,2,94,70)
+      Expand = True
+      AutoResize = True
+      Padding = 1
+      { VBox1 VBox
+        MoveScaled(2,1,90,88)
+        Expand = True
+        AutoResize = True
+        { HBox1 HBox
+          MoveScaled(1,1,89,5)
+          { LabelUNO Label
+            MoveScaled(0,0,67,4)
+            Alignment = Align.Left
+            Border = Border.Plain
+          }
+          { ButtonAtras Button
+            MoveScaled(68,0,6,4)
+            Picture = Picture["icon:/24/previous"]
+          }
+          { ButtonNavegador Button
+            MoveScaled(75,0,5,4)
+            Picture = Picture["icon:/24/directory"]
+          }
+          { ButtonAbrirTerminal Button
+            MoveScaled(80,0,5,4)
+            Picture = Picture["icon:/24/terminal"]
+          }
+          { ButtonActualizar Button
+            MoveScaled(84,0,4,5)
+            Picture = Picture["icon:/24/refresh"]
+          }
+        }
+        { FileViewUNO FileView
+          MoveScaled(0,6,96,36)
+          Expand = True
+          View = FileView.Detailed
+          ShowDirectory = True
+        }
+        { HBox2 HBox
+          MoveScaled(1,43,87,4)
+          { LabelDOS Label
+            MoveScaled(0,0,68,4)
+            Alignment = Align.Left
+            Border = Border.Plain
+          }
+          { ButtonAtras2 Button
+            MoveScaled(68,0,6,4)
+            Picture = Picture["icon:/24/previous"]
+          }
+          { ButtonNavegador4 Button
+            MoveScaled(74,0,5,4)
+            Picture = Picture["icon:/24/directory"]
+          }
+          { ButtonAbrirTerminal4 Button
+            MoveScaled(79,0,6,4)
+            Picture = Picture["icon:/24/terminal"]
+          }
+        }
+        { FileViewDOS FileView
+          MoveScaled(0,48,96,39)
+          Expand = True
+          View = FileView.Detailed
+          ShowDirectory = True
+        }
+      }
     }
-    { HBox2 HBox
-      MoveScaled(1,43,87,4)
-      { LabelDOS Label
-        MoveScaled(0,0,68,4)
-        Alignment = Align.Left
-        Border = Border.Plain
+    { Panel3 VBox
+      MoveScaled(143,4,66,67)
+      Expand = True
+      AutoResize = True
+      Padding = 1
+      { Panel4 Panel
+        MoveScaled(1,1,64,4)
+        { ButtonAbrirTerminal3 Button
+          MoveScaled(60,0,6,4)
+          Picture = Picture["icon:/24/terminal"]
+        }
+        { ButtonNavegador3 Button
+          MoveScaled(55,0,5,4)
+          Picture = Picture["icon:/24/directory"]
+        }
+        { ButtonATRASTEMPORAL Button
+          MoveScaled(52,0,3,4)
+          Picture = Picture["icon:/24/previous"]
+        }
+        { LabelDirTemporal Label
+          MoveScaled(1,0,51,4)
+          Background = &HFF9FB7
+          Expand = True
+          Padding = 1
+          Border = Border.Plain
+        }
       }
-      { ButtonAtras2 Button
-        MoveScaled(68,0,6,4)
-        Picture = Picture["icon:/24/previous"]
+      { FileViewtemporal FileView
+        MoveScaled(1,8,64,16)
+        Expand = True
+        View = FileView.Detailed
+        ShowDirectory = True
       }
-      { ButtonNavegador4 Button
-        MoveScaled(74,0,5,4)
-        Picture = Picture["icon:/24/directory"]
+      { Panel5 Panel
+        MoveScaled(2,32,63,5)
+        { ButtonATRASPDF Button
+          MoveScaled(52,0,4,4)
+          Picture = Picture["icon:/24/previous"]
+        }
+        { ButtonNavegador2 Button
+          MoveScaled(55,0,5,4)
+          Picture = Picture["icon:/24/directory"]
+        }
+        { ButtonAbrirTerminal2 Button
+          MoveScaled(59,0,6,4)
+          Picture = Picture["icon:/24/terminal"]
+        }
+        { LabelDirPDF Label
+          MoveScaled(0,0,52,4)
+          Background = &HEFDFFF
+          Expand = True
+          Border = Border.Plain
+        }
       }
-      { ButtonAbrirTerminal4 Button
-        MoveScaled(79,0,6,4)
-        Picture = Picture["icon:/24/terminal"]
+      { FileViewPDF FileView
+        MoveScaled(1,43,64,39)
+        Expand = True
+        View = FileView.Detailed
+        ShowDirectory = True
       }
     }
-    { FileViewDOS FileView
-      MoveScaled(0,48,96,39)
-      View = FileView.Detailed
-      ShowDirectory = True
-    }
-  }
-  { FileViewtemporal FileView
-    MoveScaled(123,6,64,37)
-    View = FileView.Detailed
-    ShowDirectory = True
-  }
-  { FileViewPDF FileView
-    MoveScaled(123,47,64,39)
-    View = FileView.Detailed
-    ShowDirectory = True
-  }
-  { LabelDirTemporal Label
-    MoveScaled(123,2,51,4)
-    Background = &HFF9FB7
-    Border = Border.Plain
-  }
-  { LabelDirPDF Label
-    MoveScaled(123,43,52,4)
-    Background = &HEFDFFF
-    Border = Border.Plain
-  }
-  { ButtonNavegador2 Button
-    MoveScaled(178,43,5,4)
-    Picture = Picture["icon:/24/directory"]
-  }
-  { ButtonAbrirTerminal2 Button
-    MoveScaled(182,43,6,4)
-    Picture = Picture["icon:/24/terminal"]
-  }
-  { ButtonNavegador3 Button
-    MoveScaled(177,2,5,4)
-    Picture = Picture["icon:/24/directory"]
-  }
-  { ButtonAbrirTerminal3 Button
-    MoveScaled(182,2,6,4)
-    Picture = Picture["icon:/24/terminal"]
-  }
-  { Label3 Label
-    MoveScaled(0,0,20,6)
-    Font = Font["Bold,Underline,+2"]
-    Alignment = Align.Center
-    Text = ("MARCADORES")
-  }
-  { ButtonATRASTEMPORAL Button
-    MoveScaled(174,2,3,4)
-    Picture = Picture["icon:/24/previous"]
-  }
-  { ButtonATRASPDF Button
-    MoveScaled(175,43,4,4)
-    Picture = Picture["icon:/24/previous"]
-  }
-  { LabelVERSION Label
-    MoveScaled(19,0,9,6)
-  }
-  { ButtonConfig Button
-    MoveScaled(29,1,4,5)
-    Picture = Picture["icon:/24/info"]
   }
 }
