@@ -8,7 +8,6 @@
   AutoResize = True
   { MenuLISTA Menu
     Text = ("MenuLista")
-    Visible = False
     { AlPanelUno Menu
       Text = ("Al panel nº 1")
     }

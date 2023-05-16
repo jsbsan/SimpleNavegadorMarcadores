@@ -290,4 +290,23 @@ Public Sub ButtonConfig_Click()
   FileViewPDF.Reload()
   FileViewtemporal.Reload()
 
+  'oculto menus de barra, para que solo aparezca al hacer click derecho en el listbox
+  MenuLISTA.Visible = False
+
+End
+
+Public Sub ListBoxMarcadores_DblClick()
+
+  Dim elegido As String
+  Dim valor As Integer
+  Dim directorio As String
+
+  elegido = ListBoxMarcadores.Text
+  valor = Val(Mid$(elegido, 1, InStr(elegido, ":") - 1)) - 1
+  directorio = comun.validar(ListBoxMarcadores.Tag[valor])
+
+  FileViewUNO.DIR = directorio
+  LabelUNO.TEXT = directorio
+  LabelUNO.Tooltip = LabelUNO.TEXT
+
 End
