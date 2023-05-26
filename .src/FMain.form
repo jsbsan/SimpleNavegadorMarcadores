@@ -2,10 +2,8 @@
 
 { Form Form
   MoveScaled(0,0,215,87)
-  Expand = True
   Icon = Picture["marcador.png"]
   Arrangement = Arrange.Vertical
-  AutoResize = True
   { MenuLISTA Menu
     Text = ("MenuLista")
     { AlPanelUno Menu
@@ -35,7 +33,7 @@
     }
   }
   { Splitter1 Splitter
-    MoveScaled(0,1,211,82)
+    MoveScaled(0,1,215,82)
     Expand = True
     { VBox2 VBox
       MoveScaled(2,6,45,63)
@@ -132,7 +130,7 @@
       }
     }
     { Panel3 VBox
-      MoveScaled(143,4,66,67)
+      MoveScaled(146,2,68,79)
       Expand = True
       AutoResize = True
       Padding = 1
@@ -191,6 +189,9 @@
         View = FileView.Detailed
         ShowDirectory = True
       }
+    }
+    { Timer1 #Timer
+      #MoveScaled(20,72)
     }
   }
 }

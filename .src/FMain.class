@@ -5,21 +5,29 @@ Public directorioElegido As String
 Public Sub Form_Open()
 
   cargaMarcadores()
+  'recarga los paneles 1 y 2
+  FileViewUNO.dir = settings["1PANEL", USER.HOME]
+  LabelUNO.TEXT = FileViewUNO.dir
+
+  FileViewDOS.DIR = settings["2PANEL", USER.HOME]
+  LabelDOS.TEXT = FileViewDOS.dir
+
   FileViewPDF.Dir = Settings["4PANEL", "/home/minino/PDF"]
+  LabelDirPDF.Text = FileViewPDF.Dir
+
   FileViewtemporal.Dir = Settings["3PANEL", "/home/hdd/mint/Documentos/TEMPORAL"]
   LabelDirTemporal.Text = FileViewtemporal.Dir
 
-  LabelDirPDF.Text = FileViewPDF.Dir
+  FileViewUNO.Reload()
+  FileViewDOS.Reload()
   FileViewPDF.Reload()
   FileViewtemporal.Reload()
 
   MenuLISTA.Visible = False 'oculto menu
 
-  LabelUNO.Text = User.Home & "/Documentos"
-  FileViewUNO.DIR = LabelUNO.Text
-  LabelDOS.Text = User.HOME & "/Documentos"
-  FileViewDOS.Dir = LabelDOS.Text
   LabelVERSION.TEXT = Application.Version
+  Timer1.Start()
+  Timer1.Trigger
 
 End
 
@@ -282,10 +290,10 @@ Public Sub ButtonConfig_Click()
 
   ' RECARGA LOS PANELES 3 Y 4 POR SI HAN CAMBIADO:
   FileViewPDF.Dir = Settings["4PANEL", "/home/minino/PDF"]
+  LabelDirPDF.Text = FileViewPDF.Dir
+
   FileViewtemporal.Dir = Settings["3PANEL", "/home/hdd/mint/Documentos/TEMPORAL"]
   LabelDirTemporal.Text = FileViewtemporal.Dir
-
-  LabelDirPDF.Text = FileViewPDF.Dir
 
   FileViewPDF.Reload()
   FileViewtemporal.Reload()
@@ -308,5 +316,28 @@ Public Sub ListBoxMarcadores_DblClick()
   FileViewUNO.DIR = directorio
   LabelUNO.TEXT = directorio
   LabelUNO.Tooltip = LabelUNO.TEXT
+
+End
+
+Public Sub Form_Close()
+
+  'guardar directorios de trabajo.
+  settings["1PANEL"] = FileViewUNO.dir
+  settings["2PANEL"] = FileViewDOS.DIR
+
+End
+
+Public Sub actualizarTool()
+
+  If LabelUNO.tooltip <> LabelUNO.text Then LabelUNO.tooltip = LabelUNO.text
+  If LabelDOS.tooltip <> LabelDOS.text Then LabelDOS.tooltip = LabelDOS.text
+  If LabelDirTemporal.tooltip <> LabelDirTemporal.text Then LabelDirTemporal.tooltip = LabelDirTemporal.text
+  If LabelDirPDF.tooltip <> LabelDirPdf.text Then LabelDirPDF.tooltip = LabelDirPdf.text
+
+End
+
+Public Sub Timer1_Timer()
+
+  actualizarTool()
 
 End

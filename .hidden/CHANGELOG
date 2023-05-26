@@ -1,3 +1,6 @@
+* Fri May 26 2023 jsbsan <jusabejusabe@gmail.com> 0.0.6
+- guarda rutas panel 1 y panel2, y tooltip actualiza cada 1 segundo.
+
 * Tue May 16 2023 jsbsan <jusabejusabe@gmail.com> 0.0.5
 - Al hacer doble click en el listbox, paso al panel 1 el marcador elegido
 
