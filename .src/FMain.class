@@ -341,3 +341,41 @@ Public Sub Timer1_Timer()
   actualizarTool()
 
 End
+
+Public Sub LabelUNO_MouseDown()
+
+  Dim mensaje As String
+
+  If IsDir(Clipboard.Paste("text/plain")) Then
+
+    mensaje = InputBox("Ruta:",, Clipboard.Paste("text/plain"))
+  Else
+    mensaje = InputBox("Ruta:")
+  Endif
+
+  If IsDir(mensaje) Then
+    LabelUNO.Text = mensaje
+    FileViewUNO.dir = mensaje
+    FileViewUNO.Reload()
+  Endif
+
+End
+
+Public Sub LabelDOS_MouseDown()
+
+  Dim mensaje As String
+
+  If IsDir(Clipboard.Paste("text/plain")) Then
+
+    mensaje = InputBox("Ruta:",, Clipboard.Paste("text/plain"))
+  Else
+    mensaje = InputBox("Ruta:")
+  Endif
+
+  If IsDir(mensaje) Then
+    LabelUNO.Text = mensaje
+    FileViewDOS.dir = mensaje
+    FileViewdos.Reload()
+  Endif
+
+End
