@@ -373,7 +373,7 @@ Public Sub LabelDOS_MouseDown()
   Endif
 
   If IsDir(mensaje) Then
-    LabelUNO.Text = mensaje
+    Labeldos.Text = mensaje
     FileViewDOS.dir = mensaje
     FileViewdos.Reload()
   Endif
